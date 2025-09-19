@@ -10,7 +10,7 @@ DATABASE_URL = os.getenv(
     "DB_URL", 
     "postgresql+psycopg2://sweet_shop:sweet_shop@localhost:5432/sweet_shop"
 )
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 @pytest.fixture
