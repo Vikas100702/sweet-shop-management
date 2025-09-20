@@ -1,22 +1,15 @@
-import logo from './logo.svg';
+/**
+ * Main App component - Sweet Shop Management System
+ * Simple React implementation without external UI libraries
+ */
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>🍭 Sweet Shop Management System</h1>
+        <p>Welcome to our delicious world of sweets!</p>
       </header>
     </div>
   );
