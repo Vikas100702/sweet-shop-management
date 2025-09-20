@@ -2,7 +2,7 @@
 Test cases for sweet management API endpoints.
 Tests CRUD operations and inventory management.
 """
-import pytest
+import pytest,os
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -10,8 +10,11 @@ from app.main import app
 from app.database.connection import get_db, Base
 
 # Test database setup
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test_sweets.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+DATABASE_URL = os.getenv(
+    "DB_URL", 
+    "postgresql+psycopg2://sweet_shop:sweet_shop@localhost:5432/sweet_shop"
+)
+engine = create_engine(DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def override_get_db():

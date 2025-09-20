@@ -4,7 +4,7 @@ Configures routers, middleware, and application settings.
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth
+from app.routers import auth, sweets
 from app.database.connection import engine, Base
 
 # Create database tables
@@ -29,6 +29,7 @@ app.add_middleware(
 )
 
 app.include_router(auth.router)
+app.include_router(sweets.router)
 
 @app.get("/")
 async def root():
