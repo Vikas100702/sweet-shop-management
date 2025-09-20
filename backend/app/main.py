@@ -15,8 +15,6 @@ app = FastAPI(
     title="Sweet Shop Management System",
     description="A comprehensive API for managing a sweet shop inventory with user authentication",
     version="1.0.0",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc"
 )
 
 #Configure CORS for frontend integration
@@ -37,7 +35,7 @@ async def root():
     return {
         "message": "Welcome to Sweet Shop Management System API",
         "version": "1.0.0",
-        "docs": "/api/docs",
+        "docs": "/docs",
         "health": "OK"
     }
 
