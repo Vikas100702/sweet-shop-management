@@ -1,47 +1,73 @@
-/**
- * Main App component - Sweet Shop Management System
- */
+// /**
+//  * Main App component - Sweet Shop Management System
+//  */
 
-import { useEffect, useState } from "react";
-import "./App.css";
-import apiService from "./services/api";
+// import { useEffect, useState } from "react";
+// import "./App.css";
+// import apiService from "./services/api";
+
+
+// function App() {
+//   const [apiStatus, setApiStatus] = useState("Checking API status...");
+
+//   useEffect(() => {
+//     // Test API connection
+//     const testApi = async () => {
+//       try {
+//         // Try to fetch sweets (this will fail if not authenticated, but shows API is working)
+//         await apiService.getSweets();
+//         setApiStatus('API Connected (Authentication required)');
+//       } catch (error) {
+//         if (error.message.includes('401') || error.message.includes('Session expired')) {
+//           setApiStatus('API Connected (Ready for authentication)');
+//         } else {
+//           setApiStatus(`API Error: ${error.message}`);
+//         }
+//       }
+//     };
+//     testApi();    
+//   }, []);
+
+//   return (
+//     <div className="App">
+//       <header className = "App-header">
+//         <h1>Sweet Shop Management System</h1>
+//         <p>Welcome to our delicious world of sweets!</p>
+//         <div className="card" style={{marginTop: '2rem', padding: '1rem'}}>
+//           <h3>API Status</h3>
+//           <p>{apiStatus}</p>
+//           <small style={{color: 'rgba(255, 255, 255, 0.7)'}}>
+//             Backend: {process.env.REACT_APP_API_URL || 'http://localhost:8000'}
+//           </small>
+//         </div>
+//       </header>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+/**
+ * Main App component with authentication integration
+ */
+import React from 'react';
+import './App.css';
+import { AuthProvider } from './contexts/AuthContext';
+import { Toast } from './components/Toast';
+import LoginPage from './pages/LoginPage';
 
 function App() {
-  const [apiStatus, setApiStatus] = useState("Checking API status...");
-
-  useEffect(() => {
-    // Test API connection
-    const testApi = async () => {
-      try {
-        // Try to fetch sweets (this will fail if not authenticated, but shows API is working)
-        await apiService.getSweets();
-        setApiStatus('API Connected (Authentication required)');
-      } catch (error) {
-        if (error.message.includes('401') || error.message.includes('Session expired')) {
-          setApiStatus('API Connected (Ready for authentication)');
-        } else {
-          setApiStatus(`API Error: ${error.message}`);
-        }
-      }
-    };
-    testApi();    
-  }, []);
-
   return (
-    <div className="App">
-      <header className = "App-header">
-        <h1>Sweet Shop Management System</h1>
-        <p>Welcome to our delicious world of sweets!</p>
-        <div className="card" style={{marginTop: '2rem', padding: '1rem'}}>
-          <h3>API Status</h3>
-          <p>{apiStatus}</p>
-          <small style={{color: 'rgba(255, 255, 255, 0.7)'}}>
-            Backend: {process.env.REACT_APP_API_URL || 'http://localhost:8000'}
-          </small>
-        </div>
-      </header>
-    </div>
-  )
+    <AuthProvider>
+      <div className="App">
+        {/* Toast notifications */}
+        <Toast />
+        
+        {/* For now, just show login page */}
+        <LoginPage />
+      </div>
+    </AuthProvider>
+  );
 }
 
 export default App;
